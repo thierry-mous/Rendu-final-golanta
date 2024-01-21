@@ -1,0 +1,219 @@
+{{define "modify"}}
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>create</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+
+<body>
+
+    <div class="top">
+        <h1 class="title">Redéfinir les données de votre choomba</h1>
+        <p class="phrase">Salut choomba on est peut etre en 2077 mais on a toujours Golanta ici, et tu sais quoi ben tu
+            as étais selectioné pour partiper on envoie un formulaire pour te décrire et si tu veux pas va bien te faire
+            ... oula désole je me suis emporter vas-y décris toi</p>
+    </div>
+
+    <div class="bot">
+        <div class="all-form">
+            <form id="form" action="/treatment_modif" method="post">
+
+                <label for="nom" class="text">Nom :</label>
+                <input type="text" id="nom" name="nom" required>
+
+                <label for="age" class="text">Age :</label>
+                <input type="text" id="age" name="age" required>
+
+                <label for="sexe" class="text">Sexe : </label>
+                <select id="sexe" name="sexe">
+                    <option value="homme">Homme</option>
+                    <option value="femme">Femme</option>
+                </select>
+
+                <label for="affiliation" class="text">Quelle est votre Affilation :</label>
+                <select name="affiliation" id="affiliation" required>
+                    <option value="corpo">Corpo</option>
+                    <option value="gdr">Gosse des rues</option>
+                    <option value="nomade">Nomade</option>
+                </select>
+
+                <label for="skincolor" class="text">Couleur de peau :</label>
+                <select name="skincolor" id="skincolor" required>
+                    <option value="blanc">Blanc</option>
+                    <option value="noir">Noir</option>
+                </select>
+
+                <label for="hair" class="text">Coupe de cheveux :</label>
+                <select name="hair" id="hair">
+                    <option value="hair01">Coupe de cheveux 01</option>
+                    <option value="hair02">Coupe de cheveux 02</option>
+                </select>
+
+                <label for="haircolor" class="text">Couleur de cheveux :</label>
+                <select name="haircolor" id="haircolor" required>
+                    <option value="brun">Brun</option>
+                    <option value="blond">Blond</option>
+                </select>
+
+                <label for="beard" class="text">Barbe :</label>
+                <select name="beard" id="beard" required>
+                    <option value="beard">Avec barbe</option>
+                    <option value="beardnone">Sans barbe</option>
+                </select>
+
+                <label for="cyber" class="text">Matériel Cybernetique</label>
+                <select name="cyber" id="cyber" required>
+                    <option value="cyber01">Matériel 01</option>
+                    <option value="cyber02">Matériel 02</option>
+                </select>
+
+                <label for="upgrade" class="text">Amélioration Cybernetique</label>
+                <select name="upgrade" id="upgrade" required>
+                    <option value="upgrade01">Bras de gorille</option>
+                    <option value="upgrade02">Lame mantis</option>
+                    <option value="upgrade03">Lance projectile</option>
+                    <option value="upgrade04">Monocorde</option>
+                </select>
+                <input type="hidden" id="id" name="id" value="{{.ID}}">
+                <button type="submit">Mettre à jour</button>
+            </form>
+        </div>
+        <div id="img"></div>
+    </div>
+
+</body>
+<script>
+
+    const sexeInput = document.getElementById('sexe');
+    sexeInput.addEventListener('change', () => {
+        if (sexeInput.value === 'femme') {
+            const beard = document.getElementById('beard');
+            beard.value = 'beardnone';
+            beard.disabled = true;
+        } else {
+            document.getElementById('beard').disabled = false;
+        }
+    })
+
+    const form = document.getElementById('form');
+    form.addEventListener('change', () => {
+        const formData = new FormData(form);
+        const sexe = formData.get('sexe');
+        const skincolor = formData.get('skincolor');
+        const hair = formData.get('hair');
+        const haircolor = formData.get('haircolor');
+        const beard = formData.get('beard');
+        const cyber = formData.get('cyber');
+
+
+        let id;
+        if (sexe === 'homme' && skincolor === 'blanc' && hair === 'hair01' && haircolor === 'brun' && beard === 'beard' && cyber === 'cyber01') {
+            id = '1';
+        } else if (sexe === 'homme' && skincolor === 'blanc' && hair === 'hair01' && haircolor === 'brun' && beard === 'beard' && cyber === 'cyber02') {
+            id = '2';
+        } else if (sexe === 'homme' && skincolor === 'blanc' && hair === 'hair01' && haircolor === 'brun' && beard === 'beardnone' && cyber === 'cyber01') {
+            id = '3';
+        } else if (sexe === 'homme' && skincolor === 'blanc' && hair === 'hair01' && haircolor === 'brun' && beard === 'beardnone' && cyber === 'cyber02') {
+            id = '4';
+        } else if (sexe === 'homme' && skincolor === 'blanc' && hair === 'hair01' && haircolor === 'blond' && beard === 'beard' && cyber === 'cyber01') {
+            id = '5';
+        } else if (sexe === 'homme' && skincolor === 'blanc' && hair === 'hair01' && haircolor === 'blond' && beard === 'beard' && cyber === 'cyber02') {
+            id = '6';
+        } else if (sexe === 'homme' && skincolor === 'blanc' && hair === 'hair01' && haircolor === 'blond' && beard === 'beardnone' && cyber === 'cyber01') {
+            id = '7';
+        } else if (sexe === 'homme' && skincolor === 'blanc' && hair === 'hair01' && haircolor === 'blond' && beard === 'beardnone' && cyber === 'cyber02') {
+            id = '8';
+        } else if (sexe === 'homme' && skincolor === 'blanc' && hair === 'hair02' && haircolor === 'brun' && beard === 'beard' && cyber === 'cyber01') {
+            id = '9';
+        } else if (sexe === 'homme' && skincolor === 'blanc' && hair === 'hair02' && haircolor === 'brun' && beard === 'beard' && cyber === 'cyber02') {
+            id = '10';
+        } else if (sexe === 'homme' && skincolor === 'blanc' && hair === 'hair02' && haircolor === 'brun' && beard === 'beardnone' && cyber === 'cyber01') {
+            id = '11';
+        } else if (sexe === 'homme' && skincolor === 'blanc' && hair === 'hair02' && haircolor === 'brun' && beard === 'beardnone' && cyber === 'cyber02') {
+            id = '12';
+        } else if (sexe === 'homme' && skincolor === 'blanc' && hair === 'hair02' && haircolor === 'blond' && beard === 'beard' && cyber === 'cyber01') {
+            id = '13';
+        } else if (sexe === 'homme' && skincolor === 'blanc' && hair === 'hair02' && haircolor === 'blond' && beard === 'beard' && cyber === 'cyber02') {
+            id = '14';
+        } else if (sexe === 'homme' && skincolor === 'blanc' && hair === 'hair02' && haircolor === 'blond' && beard === 'beardnone' && cyber === 'cyber01') {
+            id = '15';
+        } else if (sexe === 'homme' && skincolor === 'blanc' && hair === 'hair02' && haircolor === 'blond' && beard === 'beardnone' && cyber === 'cyber02') {
+            id = '16';
+        } else if (sexe === 'homme' && skincolor === 'noir' && hair === 'hair01' && haircolor === 'brun' && beard === 'beard' && cyber === 'cyber01') {
+            id = '17';
+        } else if (sexe === 'homme' && skincolor === 'noir' && hair === 'hair01' && haircolor === 'brun' && beard === 'beard' && cyber === 'cyber02') {
+            id = '18';
+        } else if (sexe === 'homme' && skincolor === 'noir' && hair === 'hair01' && haircolor === 'brun' && beard === 'beardnone' && cyber === 'cyber01') {
+            id = '19';
+        } else if (sexe === 'homme' && skincolor === 'noir' && hair === 'hair01' && haircolor === 'brun' && beard === 'beardnone' && cyber === 'cyber02') {
+            id = '20';
+        } else if (sexe === 'homme' && skincolor === 'noir' && hair === 'hair01' && haircolor === 'blond' && beard === 'beard' && cyber === 'cyber01') {
+            id = '21';
+        } else if (sexe === 'homme' && skincolor === 'noir' && hair === 'hair01' && haircolor === 'blond' && beard === 'beard' && cyber === 'cyber02') {
+            id = '22';
+        } else if (sexe === 'homme' && skincolor === 'noir' && hair === 'hair01' && haircolor === 'blond' && beard === 'beardnone' && cyber === 'cyber01') {
+            id = '23';
+        } else if (sexe === 'homme' && skincolor === 'noir' && hair === 'hair01' && haircolor === 'blond' && beard === 'beardnone' && cyber === 'cyber02') {
+            id = '24';
+        } else if (sexe === 'homme' && skincolor === 'noir' && hair === 'hair02' && haircolor === 'brun' && beard === 'beard' && cyber === 'cyber01') {
+            id = '25';
+        } else if (sexe === 'homme' && skincolor === 'noir' && hair === 'hair02' && haircolor === 'brun' && beard === 'beard' && cyber === 'cyber02') {
+            id = '26';
+        } else if (sexe === 'homme' && skincolor === 'noir' && hair === 'hair02' && haircolor === 'brun' && beard === 'beardnone' && cyber === 'cyber01') {
+            id = '27';
+        } else if (sexe === 'homme' && skincolor === 'noir' && hair === 'hair02' && haircolor === 'brun' && beard === 'beardnone' && cyber === 'cyber02') {
+            id = '28';
+        } else if (sexe === 'homme' && skincolor === 'noir' && hair === 'hair02' && haircolor === 'blond' && beard === 'beard' && cyber === 'cyber01') {
+            id = '29';
+        } else if (sexe === 'homme' && skincolor === 'noir' && hair === 'hair02' && haircolor === 'blond' && beard === 'beard' && cyber === 'cyber02') {
+            id = '30';
+        } else if (sexe === 'homme' && skincolor === 'noir' && hair === 'hair02' && haircolor === 'blond' && beard === 'beardnone' && cyber === 'cyber01') {
+            id = '31';
+        } else if (sexe === 'homme' && skincolor === 'noir' && hair === 'hair02' && haircolor === 'blond' && beard === 'beardnone' && cyber === 'cyber02') {
+            id = '32';
+        } else if (sexe === 'femme' && skincolor === 'blanc' && hair === 'hair01' && haircolor === 'brun' && cyber === 'cyber01') {
+            id = '33';
+        } else if (sexe === 'femme' && skincolor === 'blanc' && hair === 'hair01' && haircolor === 'brun' && cyber === 'cyber02') {
+            id = '34';
+        } else if (sexe === 'femme' && skincolor === 'blanc' && hair === 'hair01' && haircolor === 'blond' && cyber === 'cyber01') {
+            id = '35';
+        } else if (sexe === 'femme' && skincolor === 'blanc' && hair === 'hair01' && haircolor === 'blond' && cyber === 'cyber02') {
+            id = '36';
+        } else if (sexe === 'femme' && skincolor === 'blanc' && hair === 'hair02' && haircolor === 'brun' && cyber === 'cyber01') {
+            id = '37';
+        } else if (sexe === 'femme' && skincolor === 'blanc' && hair === 'hair02' && haircolor === 'brun' && cyber === 'cyber02') {
+            id = '38';
+        } else if (sexe === 'femme' && skincolor === 'blanc' && hair === 'hair02' && haircolor === 'blond' && cyber === 'cyber01') {
+            id = '39';
+        } else if (sexe === 'femme' && skincolor === 'blanc' && hair === 'hair02' && haircolor === 'blond' && cyber === 'cyber02') {
+            id = '40';
+        } else if (sexe === 'femme' && skincolor === 'noir' && hair === 'hair01' && haircolor === 'brun' && cyber === 'cyber01') {
+            id = '41';
+        } else if (sexe === 'femme' && skincolor === 'noir' && hair === 'hair01' && haircolor === 'brun' && cyber === 'cyber02') {
+            id = '42';
+        } else if (sexe === 'femme' && skincolor === 'noir' && hair === 'hair01' && haircolor === 'blond' && cyber === 'cyber01') {
+            id = '43';
+        } else if (sexe === 'femme' && skincolor === 'noir' && hair === 'hair01' && haircolor === 'blond' && cyber === 'cyber02') {
+            id = '44';
+        } else if (sexe === 'femme' && skincolor === 'noir' && hair === 'hair02' && haircolor === 'brun' && cyber === 'cyber01') {
+            id = '45';
+        } else if (sexe === 'femme' && skincolor === 'noir' && hair === 'hair02' && haircolor === 'brun' && cyber === 'cyber02') {
+            id = '46';
+        } else if (sexe === 'femme' && skincolor === 'noir' && hair === 'hair02' && haircolor === 'blond' && cyber === 'cyber01') {
+            id = '47';
+        } else if (sexe === 'femme' && skincolor === 'noir' && hair === 'hair02' && haircolor === 'blond' && cyber === 'cyber02') {
+            id = '48';
+        }
+        console.log(id);
+        let img = document.getElementById('img');
+        img.style.backgroundImage = `url('/static/img/${id}.jpg')`;
+
+    })
+
+</script>
+
+</html>
+{{end}}

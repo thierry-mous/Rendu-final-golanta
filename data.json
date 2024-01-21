@@ -1,0 +1,30 @@
+{
+  "characters": [
+    {
+      "ID": 145110,
+      "nom": "ro",
+      "age": 1,
+      "sexe": "homme",
+      "affiliation": "corpo",
+      "skincolor": "blanc",
+      "hair": "hair01",
+      "haircolor": "brun",
+      "beard": "beard",
+      "cyber": "cyber01",
+      "upgrade": "upgrade01"
+    },
+    {
+      "ID": 4092,
+      "nom": "lous",
+      "age": 19,
+      "sexe": "femme",
+      "affiliation": "corpo",
+      "skincolor": "blanc",
+      "hair": "hair02",
+      "haircolor": "brun",
+      "beard": "",
+      "cyber": "cyber02",
+      "upgrade": "upgrade03"
+    }
+  ]
+}

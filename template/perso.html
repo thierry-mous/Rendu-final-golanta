@@ -1,0 +1,39 @@
+{{define "perso"}}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+     <div>
+        <h1 class="title">voici tes données mon choom</h1>
+    </div>
+    <div class="box-perso">
+        {{range .Aventuriers}}
+        <div class="title-perso">
+            <h2>{{.Nom}}</h2>
+        <div class="info-perso">
+            <p>Age: {{.Age}}</p>
+            <p>Sexe: {{.Sexe}}</p>
+            <p>Affilation: {{.Affiliation}}</p>
+            <p>Couleur de peau: {{.SkinColor}}</p>
+            <p>Amélioration Cybernetique: {{.Upgrade}}</p>
+        </div>
+        <div>
+            <div>
+                <a href="/delete?id={{.ID}}">Supprimer</a>
+            </form>
+            </div>
+            <div>
+                <a href="/modify?id={{.ID}}">Modifier</a>
+            </div>
+            
+        </div>
+    </div>
+    {{end}}
+</body>
+</html>
+
+{{end}}
